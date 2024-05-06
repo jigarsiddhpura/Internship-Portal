@@ -1,0 +1,317 @@
+.profile-rectangle{
+    width: 28rem;
+height: 38.31rem;
+margin-left: 3.44rem;
+margin-top: 1.7rem;
+background: #FFFFFF;
+border-radius: 0.63rem;
+
+}
+
+.profile-pic-enlarged{
+    width: 8.5rem;
+height: 8.5rem;
+margin-left: 0rem;
+margin-top: 1.75rem;
+background: url(../images/Kashishpic.jpg);
+border-radius: 8.5rem;
+
+}
+
+.user-name{
+        width: 11.5rem; 
+        height: 1.81rem;
+        margin-left: 9.7rem; 
+        margin-top: 0.8rem; 
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.2rem; 
+        line-height: 1.81rem; 
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #4A2145;
+      
+}
+
+.user-job{
+    width: 9.5rem; 
+  height: 1.19rem; 
+  margin-left: 9.8rem; 
+  margin-top: 0.5rem; 
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1.19rem; 
+  
+  color: #212121;
+
+}
+
+.user-description{
+    width: 24.56rem; 
+  height: 5.94rem; 
+  margin-left: 2.13rem; 
+  margin-top: -1rem; 
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.85rem; 
+  line-height: 1.19rem; 
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  color: #74757E;
+}
+
+.user-skills, .add-notes{
+   
+  height: 1.5rem;
+  
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  
+  color: #212121;
+}
+.user-skills{
+    width: 3.19rem;
+    margin-left: 2.13rem;
+  margin-top: 0rem;
+}
+.add-notes{
+    width: 7.19rem;
+    margin-left: 1.43rem;
+  margin-top: 1.6rem;
+}
+.skill1,.skill2,.skill3,.skill4,.skill5,.skill6{
+   
+  height: 1.69rem;
+ 
+  
+  background: #BECCED;
+  border-radius: 1.25rem;
+  align-items: center;
+text-align: center;
+
+color: #243762;display: flex;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 0.75rem;
+line-height: 0.94rem;
+
+}
+
+.skill1{
+    width: 5rem;
+    padding-left: 1.4rem;
+    margin-left: 2.13rem;
+    margin-top: 0.63rem;
+}
+
+.skill2{
+    margin-left: 8.13rem;
+    margin-top: -1.7rem;
+    width: 7rem;
+    padding-left: 1rem;
+}
+
+.skill3{
+    margin-left: 16.13rem;
+    margin-top: -1.7rem;
+    width: 10rem;
+    padding-left: 1rem;
+}
+
+.skill4{
+    margin-left: 2.1rem;
+    margin-top: 1rem;
+    width: 8.5rem;
+    padding-left: 1rem;
+}
+
+.skill5{
+    width: 5rem;
+    padding-left: 0.8rem;
+    margin-left: 11.4rem;
+    margin-top: -1.7rem;
+}
+
+.skill6{
+    width: 3rem;
+    padding-left: 1rem;
+    margin-left: 17.4rem;
+    margin-top: -1.7rem;
+}
+
+.search-button-notes{
+    display: flex;
+    width: 24.5rem; 
+height: 2.513rem ; 
+margin-left: 2rem ;
+margin-top: 0.5rem; 
+background: #85D1A0;
+border-radius: 0.25rem ;
+border: 0;
+color: #FFFFFF;
+font-family: 'Inter',sans-serif;
+cursor: pointer;
+text-align: center;
+justify-content: center;
+font-size: 1.125rem;
+align-items: center;
+}
+
+.info-rectangle1,.info-rectangle2,.info-rectangle3{
+    width: 67.4rem;
+height: 11.6rem;
+
+
+background: #FFFFFF;
+border-radius: 0.67rem;
+
+}
+
+.info-rectangle1{
+    margin-left: 33.3rem;
+    margin-top: -38.2rem;
+}
+
+.info-rectangle2{
+    margin-left: 33.3rem;
+margin-top: 1.65rem;
+}
+
+.info-rectangle3{
+    margin-left: 33.3rem;
+margin-top: 1.65rem;
+}
+
+.basic-info{
+    width: 16rem;
+height: 1.93rem;
+margin-left: 1.7rem;
+padding-top: 2rem;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 1.4rem;
+line-height: 1.93rem;
+
+display: flex;
+align-items: center;
+
+color: #212121;
+
+}
+
+.age,.sapid,.dept,.phone,.email,.age1,.sapid1,.dept1,.phone1,.email1{
+    display: flex;
+    width: 10.2rem;
+height: 1.27rem;
+
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 0.95rem;
+line-height: 1.27rem;
+
+
+
+}
+.age1,.sapid1,.dept1,.phone1,.email1{
+    color: #212121;
+
+}
+.age,.sapid,.dept,.phone,.email{
+    color: #74757E;
+}
+
+.age{
+    margin-left: 1.8rem;
+    margin-top: 1.7rem;
+}
+
+.sapid{
+    margin-left: 8rem;
+margin-top: -1.3rem;
+}
+
+.dept{
+    margin-left: 19rem;
+margin-top: -1.3rem;
+
+}
+
+.phone,.phone1{
+    margin-left: 33rem;
+margin-top: -1.15rem;
+
+}
+
+.email,.email1{
+    margin-left: 45rem;
+margin-top: -1.15rem;
+
+}
+
+.age1{
+    margin-left: 1.8rem;
+    margin-top: 0.5rem;
+}
+
+.sapid1{
+    margin-left: 8rem;
+margin-top: -1.2rem;
+}
+
+.dept1{
+    width: 12rem;
+    margin-left: 19rem;
+margin-top: -1.3rem;
+
+}
+
+.upload-resume,.view-resume{
+    display: flex;
+    width: 10rem; 
+height: 2.513rem ; 
+ 
+
+
+border-radius: 0.5rem ;
+border: 0;
+font-weight: 500;
+font-family: 'Inter',sans-serif;
+cursor: pointer;
+text-align: center;
+justify-content: center;
+font-size: 0.8rem;
+align-items: center;
+
+}
+
+.upload-resume{
+    background: #243762;
+    margin-left: 1.8rem ;
+    margin-top: 01.2rem;
+    color: #FFFFFF;
+}
+.view-resume{
+    margin-left: 12.8rem ;
+margin-top: -2.8rem;
+color: #243762;
+background: transparent;
+border: 0.0625rem solid #243762;
+}

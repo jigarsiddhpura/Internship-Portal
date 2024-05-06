@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap");
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.user1 {
+  position: absolute;
+  top: 2.06rem;
+  left: 1.88rem;
+  font-weight: 500;
+}
+.pp1 {
+  position: absolute;
+  top: 1.63rem;
+  left: 8.94rem;
+  border-radius: 60px;
+  width: 1.88rem;
+  height: 1.88rem;
+  object-fit: cover;
+}
+.courses2,
+.home2,
+.research2 {
+  position: absolute;
+  top: 4.56rem;
+  left: 3.94rem;
+  font-weight: 500;
+}
+.courses2,
+.research2 {
+  top: 7.06rem;
+  left: 3.5rem;
+}
+.research2 {
+  top: 9.56rem;
+  left: 3.31rem;
+}
+.toggle {
+  position: relative;
+  background-color: #4a2145;
+  width: 12rem;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  max-width: 90%;
+  text-align: left;
+  font-size: 0.75rem;
+  color: #fff;
+  font-family:Inter;
+}
+.toggle.animate {
+  animation: 0.25s ease 0s 1 normal forwards slide-in-right;
+}

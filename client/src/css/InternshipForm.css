@@ -1,0 +1,15 @@
+body{
+    background-color: white;
+}
+
+
+.formHeader {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2rem;
+  /* identical to box height, or 100% */
+  color: #4a2145;
+  margin-bottom: 1.5rem;
+}

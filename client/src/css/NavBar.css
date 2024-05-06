@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+  background-color: #000;
+}
+.internship-portal3 {
+  position: relative;
+  font-weight: 600;
+  background: linear-gradient(90deg, #57737a, #000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 1;
+}
+.vector-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.25rem;
+  height: 0.88rem;
+}
+.vector-wrapper {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+  width: 1.25rem;
+  height: 0.88rem;
+  display: none;
+}
+.home3 {
+  position: relative;
+  font-weight: 500;
+
+}
+.home-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2.44rem;
+  text-align: left;
+  font-size: 1rem;
+  color: #212121;
+  font-family: Inter;
+}
+.icon-chevron-down,
+.pp{
+  position: relative;
+  width: 0.63rem;
+  height: 0.36rem;
+}
+.pp{
+  border-radius: 60px;
+  width: 3.13rem;
+  height: 3.13rem;
+  object-fit: cover;
+}
+.icon-chevron-down-parent {
+  justify-content: flex-start;
+  gap: 0.94rem;
+  text-align: left;
+  font-size: 1rem;
+  color: #212121;
+  font-family: Inter;
+}
+.group-parent,
+.icon-chevron-down-parent,
+.internship-portal-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.group-parent {
+  justify-content: center;
+  gap: 6.56rem;
+  z-index: 0;
+}
+.internship-portal-parent {
+  margin: 0;
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.25rem 3.13rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+  text-align: left;
+  font-size: 1.88rem;
+  font-family: Inter;
+}
+@media screen and (max-width: 960px) {
+  .vector-wrapper {
+    display: flex;
+  }
+  .home-parent,
+  .icon-chevron-down-parent {
+    display: none;
+  }
+}

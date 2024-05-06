@@ -1,0 +1,123 @@
+.courses,
+.home,
+.interview,
+.log-in,
+.research {
+  position: absolute;
+  top: 41px;
+  left: 672px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: Inter;
+  color: #212121;
+  text-align: left;
+  display: inline-block;
+  width: 4.9rem;
+}
+.courses,
+.interview,
+.log-in,
+.research {
+  left: 52.25rem;
+  text-align: center;
+  width: 4.25rem;
+}
+.interview,
+.log-in,
+.research {
+  left: 59.688rem;
+  width: 5.875rem;
+}
+.interview,
+.log-in {
+  left: 69rem;
+  text-align: left;
+  width: 4.75rem;
+}
+.log-in {
+  left: 77.06rem;
+  width: 3.125rem;
+}
+.group-child {
+ 
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100vw;
+  height: 6.6rem;
+}
+
+.group-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 6px;
+    background-color: #85d1a0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    width: 174px;
+    height: 55px;
+  }
+  .registration {
+    position: absolute;
+    top: 18px;
+    left: 38px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Inter;
+    color: #fff;
+    text-align: left;
+    display: inline-block;
+    width: 98px;
+  }
+  .rectangle-group {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 23px;
+    left: 1283px;
+    width: 174px;
+    height: 55px;
+  }
+  .rectangle-parent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1520px;
+    height: 6rem;
+    z-index: 2;
+  }
+ .logo{
+  position: absolute;
+width: 322px;
+height: 48px;
+left: 55px;
+top: 25px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 40px;
+line-height: 48px;
+
+background: linear-gradient(90deg, #57737A 0%, #000000 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+}
+
+.log-in1:hover,.registration1:hover{
+  text-decoration: none;
+  color: #212121;
+}
+
+.log-in1{
+  color: #212121;
+}
+
+.registration1{
+  color: #fff;
+}
+
