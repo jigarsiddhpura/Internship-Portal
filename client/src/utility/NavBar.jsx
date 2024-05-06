@@ -2,8 +2,14 @@ import { useState, useCallback } from "react";
 import Toggle from "../components/Toggle";
 import PortalDrawer from "../components/PortalDrawer";
 import "../css/NavBar.css";
-import { Link ,useLocation } from 'react-router-dom'
+import { Link ,useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from "../contexts/authContext";
+import { doSignOut } from "../firebase/auth";
+
 const NavBar= () => {
+
+  const { userLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   const location = useLocation();
   const currentPage = location.pathname;
@@ -55,12 +61,6 @@ const NavBar= () => {
       ) }
     </section>
 
-{/* 
-          <section className="home-parent">
-            <div className="home3">{`Home `}</div>
-            <div className="home3"><Link to='/courses' style={{textDecoration:'none',color:'#212121'}}>Courses</Link></div>
-            <div className="home3"><Link to='/applyresearch' style={{textDecoration:'none',color:'#212121'}}>Research</Link></div>
-          </section> */}
           <section className="icon-chevron-down-parent">
 
           {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ?(
@@ -76,8 +76,7 @@ const NavBar= () => {
         <Link to='/ProfessorProfile'> <img className="pp" alt="" src="/kashish-21@2x.png" /></Link>
       ) }
         
-            {/* <div className="home3"><Link to='/UserProfile' style={{textDecoration:'none',color:'#212121'}}>Kashish Gandhi</Link></div> */}
-            {/* <Link to='/UserProfile'> <img className="pp" alt="" src="/kashish-21@2x.png" /></Link> */}
+
           </section>
         </div>
       </nav>

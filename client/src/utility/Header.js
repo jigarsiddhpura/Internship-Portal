@@ -1,7 +1,9 @@
 import "../css/Header.css";
-import { useLocation } from 'react-router-dom'
+import { useLocation} from 'react-router-dom'
+
 
 const Header = () => {
+
   const location = useLocation();
   const currentPage = location.pathname;
   return (
@@ -27,8 +29,6 @@ const Header = () => {
 </span>
 
 </b>
-            {/* <span>{`Find your `}</span> */}
-            {/* <span className="dream_course_container">dream course</span> */}
       
         <img className="header_underline_course" alt="" src="/image-7@2x.png" />
       </div>
@@ -47,11 +47,6 @@ const Header = () => {
       </div>
       ) : null}
       
-
-      {/* <div className="header_enhance_skills_container">
-        Enhance your skills by learning courses from the faculty in top
-        universities
-      </div> */}
       <section className="header_rectangle_parent">
         <div className="header_frame_child" />
         <div className="header_frame_item" />

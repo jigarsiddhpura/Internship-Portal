@@ -13,7 +13,7 @@ import { styled } from "@mui/material/styles";
 import { useEffect } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import React from "react";
@@ -21,6 +21,9 @@ import "../css/Login.css";
 import undrawImg from "../images/undraw_Welcome_.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
+
+import { useAuth } from "../contexts/authContext";
+import { doSignIn, doSignInWithGoogle } from "../firebase/auth";
 
 const validationSchema = yup.object({
   email: yup
@@ -34,6 +37,9 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
+
+  const {userLoggedIn} = useAuth();
+  const navigate = useNavigate();
   // formik
 
   const formik = useFormik({
@@ -43,9 +49,20 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      doSignIn(values.email, values.password).catch(() => {
+        alert("Issue sign in with email and password");
+      });
+      navigate('/');
     },
   });
+
+  const onGoogleSignIn = (e) => {
+    e.preventDefault();
+    doSignInWithGoogle().catch(err => {
+      alert("Issue sign in with google");
+    })
+  }
 
   // adding event listener for responsiveness
   const [width, setWindowWidth] = useState(0);
@@ -116,7 +133,7 @@ const Login = () => {
             top : resp2 ?  '6rem' : '',
           }}
         >
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={(e) => {e.preventDefault(); formik.handleSubmit(e);}}>
             <Box
               sx={{
                 maxWidth: "31.25rem",
@@ -261,6 +278,7 @@ const Login = () => {
 
   return (
     <>
+      {userLoggedIn && (<Navigate to={'/'} replace={true} />)}
       {Login()}
     </>
   );

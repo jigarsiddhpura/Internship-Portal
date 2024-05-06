@@ -1,3 +1,4 @@
+
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
@@ -20,11 +21,14 @@ import PostRp from './components/PostRp'
 import EditInternship from './components/EditInternship';
 import UpdateInternship from './components/UpdateInternship';
 import UpdateResearch from './components/UpdateResearch';
-import {AppProvider} from './AppContext'
+
+// import {AppProvider} from './AppContext'
+import { AuthProvider } from './contexts/authContext';
+
 
 function App() {
   return (
-    <AppProvider>
+    <AuthProvider>
     <div className="App">
     <Router>
         <Routes>
@@ -67,7 +71,7 @@ function App() {
       
     </Router>
     </div>
-    </AppProvider>
+    </AuthProvider>
   );
 }
 

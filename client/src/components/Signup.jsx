@@ -14,7 +14,7 @@ import { styled } from "@mui/material/styles";
 import { useEffect } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { blue } from "@mui/material/colors";
@@ -22,6 +22,9 @@ import React from "react";
 import "../css/Login.css";
 import undrawImg from "../images/undraw_Welcome_.png";
 import { useFormik } from "formik";
+
+import { useAuth } from "../contexts/authContext";
+import { doCreateUser } from "../firebase/auth";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -58,6 +61,9 @@ const validationSchema = yup.object({
 });
 
 const Signup = () => {
+  const {userLoggedIn} = useAuth();
+  const navigate = useNavigate();
+  
   // adding event listener for responsiveness
   const [width, setWindowWidth] = useState(0);
 
@@ -81,6 +87,7 @@ const Signup = () => {
   const resp2 = responsiveness2.responsive;
   //
 
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -93,7 +100,12 @@ const Signup = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      console.log(values.email, values.password);
+      doCreateUser(values.email, values.password).catch(() => {
+        alert("Issue sign in with email and password");
+      });
+      navigate('/login');
     },
   });
 
@@ -120,6 +132,7 @@ const Signup = () => {
 
   return (
     <>
+      {userLoggedIn && (<Navigate to={"/"} replace={true} />)}
       <Grid container spacing={0} className="signUp_main_container"
       style = {{overflow : 'hidden'}}
       >
@@ -155,7 +168,7 @@ const Signup = () => {
             // left: resp2 ? '20rem' : ''
           }}
         >
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={(e) => {e.preventDefault();  formik.handleSubmit(e);}}>
             <Box
               sx={{
                 maxWidth: '31.25rem',
