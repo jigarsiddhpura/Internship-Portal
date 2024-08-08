@@ -34,8 +34,17 @@ import ellipse12 from "../images/ellipse-12.svg"
 import ellipse14 from "../images/ellipse-14.svg"
 import NavBar from "../utility/LandingNavBar";
 import { Link } from "react-router-dom";
+import { useAuthenticatedNavigation } from "../hooks/useAuthenticatedNavigation";
+
 
 const LandingPage = () => {
+
+  const navigateIfAuthenticated = useAuthenticatedNavigation();
+
+  const gotoJob = () => {
+    navigateIfAuthenticated("/applyinternship");
+  } 
+
   return (
     <div className="landing-page">
     <NavBar />
@@ -97,7 +106,7 @@ const LandingPage = () => {
       </button>
       <button className="rectangle-parent1">
         <div className="group-child14" />
-        <div className="browse-jobs">Browse Jobs</div>
+        <div className="browse-jobs" onClick={gotoJob}>Browse Jobs</div>
         <img className="frame-icon" alt="pictureMissing" src={frame} />
       </button>
       <div className="landing-page-child2" />

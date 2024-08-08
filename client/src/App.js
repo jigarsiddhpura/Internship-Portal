@@ -22,56 +22,53 @@ import EditInternship from './components/EditInternship';
 import UpdateInternship from './components/UpdateInternship';
 import UpdateResearch from './components/UpdateResearch';
 
-// import {AppProvider} from './AppContext'
-import { AuthProvider } from './contexts/authContext';
-
 
 function App() {
   return (
-    <AuthProvider>
+
     <div className="App">
-    <Router>
+      <Router>
         <Routes>
-          <Route path="/" element={<LandingPage/>}>
+          <Route path="/" element={<LandingPage />}>
           </Route>
-          <Route path="/Signup" element={<Signup/>}>
+          <Route path="/Signup" element={<Signup />}>
           </Route>
-          <Route path="/Login" element={<Login/>}>
+          <Route path="/Login" element={<Login />}>
           </Route>
-          <Route path="/Courses" element={<> <NavBar /><Header/> <Courses/> <Footer/> </>}>
+          <Route path="/Courses" element={<> <NavBar /><Header /> <Courses /> <Footer /> </>}>
           </Route>
-          <Route path="/postrp" element={ <> <NavBar /> <PostRp/>  </>}>
+          <Route path="/postrp" element={<> <NavBar /> <PostRp />  </>}>
           </Route>
-          <Route path="/editresearch" element={ <> <NavBar /> <Header/> <EditResearch/>  <Footer/> </>}>
+          <Route path="/editresearch" element={<> <NavBar /> <Header /> <EditResearch />  <Footer /> </>}>
           </Route>
-          <Route path="/applyresearch" element={ <><NavBar /> <Header/> <ApplyResearch/>  <Footer/> </>}>
+          <Route path="/applyresearch" element={<><NavBar /> <Header /> <ApplyResearch />  <Footer /> </>}>
           </Route>
-          <Route path="/PostInternship" element={ <> <NavBar /> <PostInternship/>  </>}>
+          <Route path="/PostInternship" element={<> <NavBar /> <PostInternship />  </>}>
           </Route>
-          <Route path="/updateresearch/:id" element={ <> <NavBar /> <UpdateResearch/>  </>}>
+          <Route path="/updateresearch/:id" element={<> <NavBar /> <UpdateResearch />  </>}>
           </Route>
-          <Route path="/applyinternship" element={ <><NavBar /> <Header/> <ApplyInternship/>  <Footer/> </>}>
+          <Route path="/applyinternship" element={<><NavBar /> <Header /> <ApplyInternship />  <Footer /> </>}>
           </Route>
-          <Route path="/editinternship" element={ <><NavBar /> <Header/> <EditInternship/>  <Footer/> </>}>
+          <Route path="/editinternship" element={<><NavBar /> <Header /> <EditInternship />  <Footer /> </>}>
           </Route>
-          <Route path="/updateinternship/:id" element={ <><NavBar />  <UpdateInternship/>  </>}>
+          <Route path="/updateinternship/:id" element={<><NavBar />  <UpdateInternship />  </>}>
           </Route>
-          <Route path="/header" element={<Header/>}>
+          <Route path="/header" element={<Header />}>
           </Route>
-          <Route path="/nav" element={<NavBar/>}>
+          <Route path="/nav" element={<NavBar />}>
           </Route>
-          <Route path="/UserProfile" element={<UserProfile/>}>
+          <Route path="/UserProfile" element={<UserProfile />}>
           </Route>
-  
-          <Route path="/ProfessorProfile" element={ <ProfessorProfile/>}>
+
+          <Route path="/ProfessorProfile" element={<ProfessorProfile />}>
           </Route>
-          
+
 
         </Routes>
-      
-    </Router>
+
+      </Router>
     </div>
-    </AuthProvider>
+
   );
 }
 

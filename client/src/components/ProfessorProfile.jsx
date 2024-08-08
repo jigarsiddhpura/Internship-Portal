@@ -3,6 +3,7 @@ import NavBar from '../utility/NavBar';
 import '../css/ProfessorProfile.css'
 import searchicon from '../images/search-icon.svg'
 import Textarea from '../utility/Textarea'
+import gojo from "../images/gojo.png"
 
 const ProfessorProfile = () => {
   return (
@@ -25,44 +26,44 @@ const ProfessorProfile = () => {
             </ul>
             <div className='line-1-table'></div>
             <ul className='row'>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
             </ul>
             <ul className='row'style={{background: '#F6F6F6'}}>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid  #6255A5',color:' #6255A5'}}>Shortlisted</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
                 
             </ul>
             <ul className='row'>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid #00BF44',color:'#00BF44'}}>Hired</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
             </ul>
             <ul className='row'style={{background: '#F6F6F6'}}>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid  #C31616',color:' #C31616'}}>Declined</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
             </ul>
             <ul className='row'>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
             </ul>
             <ul className='row'style={{background: '#F6F6F6'}}>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
             </ul>
             <ul className='row'>
-                <li className='student-name'>Kashish Gandhi</li>
+                <li className='student-name'>gojo</li>
                 <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
                 <li className='student-applied-date'>13/05/2023</li>
                 <li className='see-resume'>See Resume</li>
@@ -71,8 +72,8 @@ const ProfessorProfile = () => {
           </div>
 
           <div className='professor-info'>
-          <img src="../images/Kashishpic.jpg" className="professor-profile-pic"></img>
-          <div className='professor-name'>Kashish Gandhi</div>
+          <img src={gojo} className="professor-profile-pic" alt="gojo"></img>
+          <div className='professor-name'>gojo</div>
           <div className="basic-info-professor">Basic Information</div>
           <div className='professor-age'>AGE</div>
           <div className='professor-age-data'>25</div>

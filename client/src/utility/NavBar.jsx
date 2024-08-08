@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import Toggle from "../components/Toggle";
 import PortalDrawer from "../components/PortalDrawer";
 import "../css/NavBar.css";
+import gojo from "../images/gojo.png"
 import { Link ,useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from "../contexts/authContext";
 import { doSignOut } from "../firebase/auth";
@@ -64,16 +65,16 @@ const NavBar= () => {
           <section className="icon-chevron-down-parent">
 
           {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ?(
-       <div className="home3"><Link to='/UserProfile' style={{textDecoration:'none',color:'#212121'}}>Kashish Gandhi</Link></div>
+       <div className="home3"><Link to='/UserProfile' style={{textDecoration:'none',color:'#212121'}}>gojo</Link></div>
         
       ) : (
-        <div className="home3"><Link to='/ProfessorProfile' style={{textDecoration:'none',color:'#212121'}}>Kashish Gandhi</Link></div>
+        <div className="home3"><Link to='/ProfessorProfile' style={{textDecoration:'none',color:'#212121'}}>gojo</Link></div>
       ) }
          {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ?(
-       <Link to='/UserProfile'> <img className="pp" alt="" src="/kashish-21@2x.png" /></Link>
+       <Link to='/UserProfile'> <img className="pp" alt="pp" src={gojo} /></Link>
         
       ) : (
-        <Link to='/ProfessorProfile'> <img className="pp" alt="" src="/kashish-21@2x.png" /></Link>
+        <Link to='/ProfessorProfile'> <img className="pp" alt="" src={gojo} /></Link>
       ) }
         
 

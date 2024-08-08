@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
 
 import gojo from "../images/gojo.png";
 import Pagination from "@mui/material/Pagination";

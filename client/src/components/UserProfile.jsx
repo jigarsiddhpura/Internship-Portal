@@ -4,6 +4,7 @@ import NavBar from '../utility/NavBar'
 import Textarea from '../utility/Textarea';
 import upload from '../images/upload.svg'
 import eye from '../images/eye.svg'
+import gojo from "../images/gojo.png"
 
 const UserProfile = () => {
   const [fileUrl, setFileUrl] = useState(null);
@@ -31,8 +32,8 @@ const UserProfile = () => {
     <div style={{background:"#E8FCFE", height:"100vh", width:"100%"}}>
         <NavBar />
         <div className="profile-rectangle">
-            <img src="../images/Kashishpic.jpg" className="profile-pic-enlarged"></img>
-            <div className="user-name">Kashish Gandhi</div>
+            <img src={gojo} className="profile-pic-enlarged"></img>
+            <div className="user-name">gojo</div>
             <div className="user-job">Frontend Developer</div>
             <div className="user-description">Introduction about me loreum ipsum Introduction about me loreum ipsum Introduction about me loreum ipsum </div>
             <div className="user-skills">Skills</div>
@@ -60,7 +61,7 @@ const UserProfile = () => {
            <div className="sapid1">60004210036</div> 
            <div className="dept1">Computer Engineering</div> 
            <div className="phone1">9619121679</div> 
-           <div className="email1">kashishgandhi6112003@gmail.com</div>
+           <div className="email1">gojogandhi6112003@gmail.com</div>
           
             <label htmlFor="resume-input" className="upload-resume">
               <img src={upload} style={{ marginRight: '0.5rem' }}></img>

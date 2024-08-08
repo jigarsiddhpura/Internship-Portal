@@ -17,9 +17,9 @@ export function AuthProvider({children}) {
         const unsubscribe = onAuthStateChanged(auth, initializeUser);
         // initializeUser -> callback func that will subscribe to auth events
         return unsubscribe; // cleanup
-    })
+    },[])
 
-    async function initializeUser(user) {
+    function initializeUser(user) {
         if (user) {
             setCurrentUser({...user});
             setUserLoggedIn(true);

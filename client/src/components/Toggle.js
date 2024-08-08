@@ -38,16 +38,16 @@ const Toggle = ({ onClose }) => {
   return (
     <div className="toggle" data-animate-on-scroll>
       {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
-        <div className="user1"><Link to='/UserProfile' style={{textDecoration:'none',color:'#ffffff'}}>Kashish Gandhi</Link></div>
+        <div className="user1"><Link to='/UserProfile' style={{textDecoration:'none',color:'#ffffff'}}>gojo</Link></div>
         
       ) : (
-        <div className="user1"><Link to='/ProfessorProfile' style={{textDecoration:'none',color:'#ffffff'}}>Kashish Gandhi</Link></div>
+        <div className="user1"><Link to='/ProfessorProfile' style={{textDecoration:'none',color:'#ffffff'}}>gojo</Link></div>
       )}
    {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
-        <Link to='/UserProfile'> <img className="pp1" alt="" src="/kashish-2@2x.png" /></Link>
+        <Link to='/UserProfile'> <img className="pp1" alt="" src="/gojo-2@2x.png" /></Link>
         
       ) : (
-        <Link to='/ProfessorProfile'> <img className="pp1" alt="" src="/kashish-2@2x.png" /></Link>
+        <Link to='/ProfessorProfile'> <img className="pp1" alt="" src="/gojo-2@2x.png" /></Link>
       )}
       <div className="home2">{`Home `}</div>
 
@@ -79,8 +79,8 @@ const Toggle = ({ onClose }) => {
 
 
 
-      {/* <div className="user1">Kashish Gandhi</div>
-      <img className="pp1" alt="" src="/kashish-2@2x.png" />
+      {/* <div className="user1">gojo</div>
+      <img className="pp1" alt="" src="/gojo-2@2x.png" />
       <div className="home2">{`Home `}</div>
       <div className="courses2">Courses</div>
       <div className="research2">Research</div> */}

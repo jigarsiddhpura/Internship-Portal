@@ -48,12 +48,14 @@ const Login = () => {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // alert(JSON.stringify(values, null, 2));
-      doSignIn(values.email, values.password).catch(() => {
+      try {
+        doSignIn(values.email, values.password);
+        navigate('/');
+      } catch (error) {
         alert("Issue sign in with email and password");
-      });
-      navigate('/');
+      }
     },
   });
 

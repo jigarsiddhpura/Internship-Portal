@@ -21,7 +21,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Checkbox from "@mui/material/Checkbox";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
 
 var drawerWidth = 240;
 
