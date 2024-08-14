@@ -19,22 +19,22 @@ const ApplyInternship = () => {
 
   const getInternships = () => {
     try {
-      var myHeaders = new Headers();
+      // var myHeaders = new Headers();
 
-      myHeaders.append(
-        "Authorization",
-        "Token 57e32c9351107fbc6b6d171e48472567d223fa7e"
-        // student ka token
-      );
+      // myHeaders.append(
+      //   "Authorization",
+      //   "Token 57e32c9351107fbc6b6d171e48472567d223fa7e"
+      //   // student ka token
+      // );
 
       var requestOptions = {
         method: "GET",
-        headers: myHeaders,
+        // headers: myHeaders,
         redirect: "follow",
       };
 
       fetch(
-        "https://ipbackend.pythonanywhere.com/internship-list/",
+        "http://localhost:8080/api/internships",
         requestOptions
       )
         .then((response) => response.text())
@@ -49,7 +49,6 @@ const ApplyInternship = () => {
     getInternships();
   }, []);
 
-  // console.log(internships);
   var [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   window.onstorage = () => {
@@ -67,10 +66,10 @@ const ApplyInternship = () => {
     },
   });
 
-  const {selectedTags, setSelectedTags} = useContext(AppContext)
+  const { selectedTags, setSelectedTags } = useContext(AppContext)
   const [filteredInternships, setFilteredInternships] = useState(internships)
 
-  function isNumberInStipendRange(stipendRange,stipend){ 
+  function isNumberInStipendRange(stipendRange, stipend) {
 
     // replacing comma and splitting the stipend range
     const sanitizedStipendRange = stipendRange.replace(/,/g, '');
@@ -79,35 +78,35 @@ const ApplyInternship = () => {
     return numericNumber >= minStipend && numericNumber <= maxStipend
   }
 
-    // Filter internships whenever selectedTags change
-    useEffect(() => {
-      console.log(selectedTags);
-      if (selectedTags.length === 0) {
-        setFilteredInternships(internships);
-      } else {
-        const filtered = internships.filter((internship) =>
-          (
-            selectedTags.some((tag) => internship.skills.split(",").includes(tag)) // filtering skills
-          ) ||
-          (
-            selectedTags.includes(internship.internship_Type) // filtering internship type
-          ) ||
-          (
-            selectedTags.some((tag) => isNumberInStipendRange(tag,internship.stipend)) // filtering stipend
-          )
-        );
-        setFilteredInternships(filtered);
-      }
-    }, [selectedTags,internships]);
+  // Filter internships whenever selectedTags change
+  useEffect(() => {
+    console.log(selectedTags);
+    if (selectedTags.length === 0) {
+      setFilteredInternships(internships);
+    } else {
+      const filtered = internships.filter((internship) =>
+        (
+          selectedTags.some((tag) => internship.skills.split(",").includes(tag)) // filtering skills
+        ) ||
+        (
+          selectedTags.includes(internship.internship_Type) // filtering internship type
+        ) ||
+        (
+          selectedTags.some((tag) => isNumberInStipendRange(tag, internship.stipend)) // filtering stipend
+        )
+      );
+      setFilteredInternships(filtered);
+    }
+  }, [selectedTags, internships]);
 
   const InternshipCard = ({ items }) => {
     return (
       <ThemeProvider theme={theme}>
         <Grid md={12}>
           {filteredInternships.map((internship, index) => {
-            var skills = internship.skills.split(",");
-            skills = skills.filter((element) => element !== "");
-            if (items.includes(internship.id) ) {
+            // var skills = internship.skills.split(",");
+            // skills = skills.filter((element) => element !== "");
+            if (items.includes(internship.id)) {
               return (
                 <Grid
                   key={index}
@@ -133,42 +132,46 @@ const ApplyInternship = () => {
                     }}
                   >
                     <Avatar
-                      alt="Remy Sharp"
-                      src={gojo}
+                      alt="internship-logo"
+                      src={(internship.internshipLogoUrl.toString().includes("placeholder")) ? gojo : internship.internshipLogoUrl}
                       sx={{ width: 56, height: 56 }}
                     />
                   </Grid>
                   <Grid item md={4}>
                     <Typography variant="h5" gutterBottom align="left">
-                      {internship.internship_Title}
+                      {internship.jobTitle}
                     </Typography>
                     <Typography variant="body2" gutterBottom align="left">
-                      Sridhar Iyer, {internship.internship_Type}
+                      {internship.location}
                     </Typography>
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      style={{
-                        marginTop: "0.5rem",
-                        width: "16rem",
-                        // border: "2px solid red",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <Chip
-                        label={internship.internship_Type}
-                        color="primary"
-                        variant="outlined"
-                        style={{ marginBottom: "5px" }}
-                      />
-                      {skills.map((skill) => (
+                    {
+                      (internship.jobType) ?
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          style={{
+                            marginTop: "0.5rem",
+                            width: "16rem",
+                            // border: "2px solid red",
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          <Chip
+                            label={internship.jobType}
+                            color="primary"
+                            variant="outlined"
+                            style={{ marginBottom: "5px" }}
+                          />
+                          {/* {skills.map((skill) => (
                         <Chip
                           key={skill}
                           label={skill.trim()}
                           color="primary"
                         />
-                      ))}
-                    </Stack>
+                      ))} */}
+                        </Stack>
+                        : <></>
+                    }
                   </Grid>
                   <Grid item md={3} paddingLeft={3}>
                     <Stack direction="column" spacing={2}>
@@ -177,8 +180,7 @@ const ApplyInternship = () => {
                         <span
                           style={{ color: "black", marginBottom: "0.3rem" }}
                         >
-                          {internship.start_date} to <br />
-                          {internship.end_date}
+                          {internship.duration}
                         </span>
                       </Stack>
                       <Stack direction="row" spacing={2}>
@@ -186,7 +188,7 @@ const ApplyInternship = () => {
                         <span
                           style={{ color: "black", marginBottom: "0.3rem" }}
                         >
-                          {internship.organization}
+                          {internship.companyName}
                         </span>
                       </Stack>
                       <Stack direction="row" spacing={2}>
@@ -194,7 +196,7 @@ const ApplyInternship = () => {
                         <span
                           style={{ color: "black", marginBottom: "0.3rem" }}
                         >
-                          {internship.stipend}
+                          {internship.stipend.substring(2)}
                         </span>
                       </Stack>
                     </Stack>
@@ -208,7 +210,7 @@ const ApplyInternship = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="secondary" href={internship.applyLink}>
                       Apply
                     </Button>
                   </Grid>
@@ -224,14 +226,14 @@ const ApplyInternship = () => {
 
   function extractIdsFromList(list) {
     const idList = [];
-    
+
     for (let i = 0; i < list.length; i++) {
       const item = list[i];
       const id = item.id;
-      
+
       idList.push(id);
     }
-    
+
     return idList;
   }
 
@@ -267,7 +269,7 @@ const ApplyInternship = () => {
     };
 
     return (
-      <div style={{ display: "flex", alignItems: "center" , flexDirection:'column'}} >
+      <div style={{ display: "flex", alignItems: "center", flexDirection: 'column' }} >
         <InternshipCard items={currentItems} />
 
         <Stack spacing={2} style={{ display: "flex", alignItems: "center" }}>
