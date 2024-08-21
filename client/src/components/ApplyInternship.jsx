@@ -104,8 +104,9 @@ const ApplyInternship = () => {
       <ThemeProvider theme={theme}>
         <Grid md={12}>
           {filteredInternships.map((internship, index) => {
-            // var skills = internship.skills.split(",");
+            var skills = internship.skills ? internship.skills.split(",") : "";
             // skills = skills.filter((element) => element !== "");
+            // var skills = null;
             if (items.includes(internship.id)) {
               return (
                 <Grid
@@ -133,9 +134,14 @@ const ApplyInternship = () => {
                   >
                     <Avatar
                       alt="internship-logo"
-                      src={(internship.internshipLogoUrl.toString().includes("placeholder")) ? gojo : internship.internshipLogoUrl}
+                      src={
+                        internship.internshipLogoUrl && internship.internshipLogoUrl.toString().includes("placeholder")
+                          ? gojo
+                          : internship.internshipLogoUrl || ""
+                      }
                       sx={{ width: 56, height: 56 }}
                     />
+
                   </Grid>
                   <Grid item md={4}>
                     <Typography variant="h5" gutterBottom align="left">
@@ -162,13 +168,13 @@ const ApplyInternship = () => {
                             variant="outlined"
                             style={{ marginBottom: "5px" }}
                           />
-                          {/* {skills.map((skill) => (
-                        <Chip
-                          key={skill}
-                          label={skill.trim()}
-                          color="primary"
-                        />
-                      ))} */}
+                          {skills && skills.map((skill) => (
+                            <Chip
+                              key={skill}
+                              label={skill.trim()}
+                              color="primary"
+                            />
+                          ))}
                         </Stack>
                         : <></>
                     }
@@ -210,7 +216,7 @@ const ApplyInternship = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <Button variant="contained" color="secondary" href={internship.applyLink}>
+                    <Button variant="contained" color="secondary" href={internship ? internship.applyLink : null}>
                       Apply
                     </Button>
                   </Grid>

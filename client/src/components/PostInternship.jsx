@@ -13,41 +13,42 @@ import makeAnimated from "react-select/animated";
 import { type } from "@testing-library/user-event/dist/type";
 import { skillsOptions } from "../docs/internship_skills.ts";
 import Select from "react-select";
+import { toast } from 'react-hot-toast';
 
 const validationSchema = yup.object({
-  position: yup.string("ML Engineer").required("Position is required"),
-  internship_type: yup
+  jobTitle: yup.string("ML Engineer").required("Position is required"),
+  jobType: yup
     .string("internship_type")
     .required("Internship type is required"),
-  start_date: yup
+  startDate: yup
     .date()
     .min(new Date(), "Selected date must be in future")
     .required("Start date is required"),
-  end_date: yup
+  endDate: yup
     .date()
     .min(new Date(), "Selected date must be in future")
     .required("End date is required"),
-  stipend: yup.number(1000).required("Stipend is required"),
+  stipend: yup.string("1000").required("Stipend is required"),
   eligibility: yup.string("B.Tech").required("Eligibility is required"),
-  organization: yup.string("B.Tech").required("Organization is required"),
+  companyName: yup.string("B.Tech").required("companyName is required"),
   location: yup.string("Mumbai"),
   positionsOpen: yup.number(1).required("Number of positions is required"),
-  skillsRequired: yup.array().required("Required Field"),
+  skills: yup.array().required("Required Field"),
 });
 
 const PostInternshipForm = () => {
   const formik = useFormik({
     initialValues: {
-      position: "",
-      internship_type: "",
-      positionsOpen: "",
-      stipend: "",
-      skillsRequired: [],
-      start_date: "",
-      end_date: "",
-      eligibility: "",
-      organization: "",
+      jobTitle: "",
+      companyName: "",
       location: "",
+      stipend: "",
+      jobType: "",
+      skills: [],
+      positionsOpen: "",
+      startDate: "",
+      endDate: "",
+      eligibility: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -55,50 +56,63 @@ const PostInternshipForm = () => {
         selectedValues[index] = item.value;
       });
       var concat_values = selectedValues.join(",");
-      formik.values.skillsRequired = concat_values;
-      alert(JSON.stringify(values, null, 2));
-      sendData(values);
+      formik.values.skills = concat_values;
+
+      const duration = calculateMonthDuration(values.startDate, values.endDate);
+      formik.values.duration = duration;
+
+      formik.values.stipend = `₹ ${formik.values.stipend} /month`
+
+      const {startDate, endDate, eligibility, positionsOpen, ...filteredValues } = values;
+
+      // alert(JSON.stringify(filteredValues, null, 2));
+      sendData(filteredValues);
     },
   });
 
-  const sendData = (values) => {
+  const calculateMonthDuration = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    let months = (end.getFullYear() - start.getFullYear()) * 12;
+    months -= start.getMonth();
+    months += end.getMonth();
+
+    // Adjust for same month but different day
+    if (end.getDate() < start.getDate()) {
+      months--;
+    }
+    console.log(months);
+
+    return months <= 0 ? "0" : months+" MONTHS";
+  }
+
+  const sendData = (internshipData) => {
     try {
+
       var myHeaders = new Headers();
 
-      myHeaders.append(
-        "Authorization",
-        "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
-      );
-
+      // myHeaders.append(
+      //   "Authorization",
+      //   "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
+      // );
       // myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
 
-      console.log(myHeaders);
-
-      var formdata = new FormData();
-      formdata.append("skills", values.skillsRequired);
-      formdata.append("internship_Title", values.position);
-      formdata.append("internship_Type", values.internship_type);
-      formdata.append("start_date", values.start_date);
-      formdata.append("end_date", values.end_date);
-      formdata.append("stipend", values.stipend);
-      formdata.append("eligibility", values.eligibility);
-      formdata.append("organization", values.organization);
-      formdata.append("location", values.location);
-      formdata.append("no_Of_Openings", values.positionsOpen);
+      myHeaders.append("Content-Type", "application/json");
 
       var requestOptions = {
         method: "POST",
         headers: myHeaders,
-        body: formdata,
+        body: JSON.stringify(internshipData), // backend expects json not formdata
         redirect: "follow",
       };
 
       fetch(
-        "https://ipbackend.pythonanywhere.com/internship-create/",
+        "http://localhost:8080/api/internships",
         requestOptions
       )
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => toast.success("Internship created "))
         .catch((error) =>
           console.log("Error while posting internship : ", error)
         );
@@ -174,17 +188,17 @@ const PostInternshipForm = () => {
     return (
       <>
         <TextField
-          id="start_date"
+          id="startDate"
           type={focus_startDate ? "date" : "text"}
           label="start Date"
           placeholder="start Date"
           onFocus={onFocusStartDate}
-          name="start_date"
-          value={formik.values.start_date}
+          name="startDate"
+          value={formik.values.startDate}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          error={formik.touched.start_date && Boolean(formik.errors.start_date)}
-          helperText={formik.touched.start_date && formik.errors.start_date}
+          error={formik.touched.startDate && Boolean(formik.errors.startDate)}
+          helperText={formik.touched.startDate && formik.errors.startDate}
           required
           style={{ margin: "0 1rem 1rem 0", width: resp ? "20ch" : "24ch" }}
         />
@@ -196,18 +210,18 @@ const PostInternshipForm = () => {
     return (
       <>
         <TextField
-          id="end_date"
+          id="endDate"
           type={focus_endDate ? "date" : "text"}
           label="End Date"
           placeholder="End Date"
           onFocus={onFocusendDate}
           // onBlur={onBlur}
-          name="end_date"
-          value={formik.values.end_date}
+          name="endDate"
+          value={formik.values.endDate}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          error={formik.touched.end_date && Boolean(formik.errors.end_date)}
-          helperText={formik.touched.end_date && formik.errors.end_date}
+          error={formik.touched.endDate && Boolean(formik.errors.endDate)}
+          helperText={formik.touched.endDate && formik.errors.endDate}
           required
           style={{ marginBottom: "1rem", width: resp ? "20ch" : "24ch" }}
         />
@@ -215,22 +229,22 @@ const PostInternshipForm = () => {
     );
   };
 
-  const OrganizationField = () => {
+  const companyNameField = () => {
     return (
       <>
         <TextField
-          id="organization"
+          id="companyName"
           type="text"
-          label="Organization"
-          placeholder="Organization"
-          name="organization"
-          value={formik.values.organization}
+          label="companyName"
+          placeholder="companyName"
+          name="companyName"
+          value={formik.values.companyName}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           error={
-            formik.touched.organization && Boolean(formik.errors.organization)
+            formik.touched.companyName && Boolean(formik.errors.companyName)
           }
-          helperText={formik.touched.organization && formik.errors.organization}
+          helperText={formik.touched.companyName && formik.errors.companyName}
           required
           style={{margin: "0 1rem 1rem 0", width: resp ? "20ch" : "24ch" }}
         />
@@ -269,12 +283,12 @@ const PostInternshipForm = () => {
           type="text"
           label="Position"
           placeholder="Position"
-          name="position"
-          value={formik.values.position}
+          name="jobTitle"
+          value={formik.values.jobTitle}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          error={formik.touched.position && Boolean(formik.errors.position)}
-          helperText={formik.touched.position && formik.errors.position}
+          error={formik.touched.jobTitle && Boolean(formik.errors.jobTitle)}
+          helperText={formik.touched.jobTitle && formik.errors.jobTitle}
           required
           style={{ marginBottom: "1rem", width: resp ? "42ch" : "50ch" }}
         />
@@ -290,16 +304,16 @@ const PostInternshipForm = () => {
           type="text"
           label="Internship Type"
           placeholder="Remote/Onsite"
-          name="internship_type"
-          value={formik.values.internship_type}
+          name="jobType"
+          value={formik.values.jobType}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           error={
-            formik.touched.internship_type &&
-            Boolean(formik.errors.internship_type)
+            formik.touched.jobType &&
+            Boolean(formik.errors.jobType)
           }
           helperText={
-            formik.touched.internship_type && formik.errors.internship_type
+            formik.touched.jobType && formik.errors.jobType
           }
           required
           style={{ marginBottom: "1rem", width: resp ? "42ch" : "50ch" }}
@@ -338,7 +352,7 @@ const PostInternshipForm = () => {
       <>
         <TextField
           id="stipend"
-          type="number"
+          type="text"
           label="Stipend"
           placeholder="Stipend"
           name="stipend"
@@ -382,7 +396,7 @@ const PostInternshipForm = () => {
       <>
         <Select
           required
-          className="skillsRequired"
+          className="skills"
           closeMenuOnSelect={false}
           components={animatedComponents}
           // defaultValue={[skillsOptions[4], skillsOptions[5]]}
@@ -450,7 +464,7 @@ const PostInternshipForm = () => {
             </div>
 
             <div style={{ display: "flex" }}>
-              {OrganizationField()}
+              {companyNameField()}
               {LocationField()}
             </div>
 
