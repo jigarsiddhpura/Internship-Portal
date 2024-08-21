@@ -14,7 +14,7 @@ const LandingNavBar = () => {
     <div className='navbar'>
       <nav className="rectangle-parent">
         <div className="group-child" />
-        <div className="home">{`Home `}</div>
+        
         <div><Link to="/Courses" className='courses'>Courses</Link></div>
         <div><Link to="/applyresearch" className='research'>Research</Link></div>
 

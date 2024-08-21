@@ -3,11 +3,11 @@ import Toggle from "../components/Toggle";
 import PortalDrawer from "../components/PortalDrawer";
 import "../css/NavBar.css";
 import gojo from "../images/gojo.png"
-import { Link ,useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from "../contexts/authContext";
 import { doSignOut } from "../firebase/auth";
 
-const NavBar= () => {
+const NavBar = () => {
 
   const { userLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -34,49 +34,54 @@ const NavBar= () => {
             <img className="vector-icon" alt="" src="/vector.svg" />
           </button>
           <section className="home-parent">
-      <div className="home3">{`Home `}</div>
-      {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
-        <div className="home3">
-          <Link to="/Courses" style={{ textDecoration: 'none', color: '#212121' }}>
-            Courses
-          </Link>
-        </div>
-        
-      ) : (
-        <div className="home3">
-          <Link to="/PostInternship" style={{ textDecoration: 'none', color: '#212121' }}>
-            Post Internship/Research Paper
-          </Link>
-        </div>
-      )}
 
-{currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ?(
-        <div className="home3">
-          <Link to="/applyresearch" style={{ textDecoration: 'none', color: '#212121' }}>
-            Research
-          </Link>
-        </div>
-        
-      ) : (
-       null
-      ) }
-    </section>
+            <div className="home3">
+              <Link to="/" style={{ color: '#212121' }}>
+                Home
+              </Link>
+            </div>
+            {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
+              <div className="home3">
+                <Link to="/Courses" style={{ textDecoration: 'none', color: '#212121' }}>
+                  Courses
+                </Link>
+              </div>
+
+            ) : (
+              <div className="home3">
+                <Link to="/PostInternship" style={{ textDecoration: 'none', color: '#212121' }}>
+                  Post Internship/Research Paper
+                </Link>
+              </div>
+            )}
+
+            {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
+              <div className="home3">
+                <Link to="/applyresearch" style={{ textDecoration: 'none', color: '#212121' }}>
+                  Research
+                </Link>
+              </div>
+
+            ) : (
+              null
+            )}
+          </section>
 
           <section className="icon-chevron-down-parent">
 
-          {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ?(
-       <div className="home3"><Link to='/UserProfile' style={{textDecoration:'none',color:'#212121'}}>gojo</Link></div>
-        
-      ) : (
-        <div className="home3"><Link to='/ProfessorProfile' style={{textDecoration:'none',color:'#212121'}}>gojo</Link></div>
-      ) }
-         {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ?(
-       <Link to='/UserProfile'> <img className="pp" alt="pp" src={gojo} /></Link>
-        
-      ) : (
-        <Link to='/ProfessorProfile'> <img className="pp" alt="" src={gojo} /></Link>
-      ) }
-        
+            {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
+              <div className="home3"><Link to='/UserProfile' style={{ textDecoration: 'none', color: '#212121' }}>gojo</Link></div>
+
+            ) : (
+              <div className="home3"><Link to='/ProfessorProfile' style={{ textDecoration: 'none', color: '#212121' }}>gojo</Link></div>
+            )}
+            {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
+              <Link to='/UserProfile'> <img className="pp" alt="pp" src={gojo} /></Link>
+
+            ) : (
+              <Link to='/ProfessorProfile'> <img className="pp" alt="" src={gojo} /></Link>
+            )}
+
 
           </section>
         </div>

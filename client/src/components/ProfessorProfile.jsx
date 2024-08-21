@@ -1,94 +1,125 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NavBar from '../utility/NavBar';
-import '../css/ProfessorProfile.css'
-import searchicon from '../images/search-icon.svg'
-import Textarea from '../utility/Textarea'
+// import { CiSearch, CiCirclePlus, ImCross } from '@heroicons/react/solid'
 import gojo from "../images/gojo.png"
+import { CiSearch, CiCirclePlus } from "react-icons/ci";
+import { ImCross } from "react-icons/im";
+
+const Button = ({ children, className, onClick }) => (
+  <button
+    className={`px-4 py-2 rounded-md transition duration-300 ease-in-out ${className}`}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
+
+const SearchInput = () => (
+  <div className="flex items-center bg-white rounded-md py-1 px-2 shadow-sm">
+    <CiSearch className="w-5 h-5 text-gray-400 mr-2" />
+    <input placeholder='Search' className="outline-none w-full h-10" />
+  </div>
+);
+
+const TableHeader = () => (
+  <div className="hidden md:flex justify-between border-b pb-2 mb-2 font-semibold text-gray-700">
+    <div className="w-1/4">Full name</div>
+    <div className="w-1/4">Hiring Stage</div>
+    <div className="w-1/4">Applied Date</div>
+    <div className="w-1/4">Action</div>
+  </div>
+);
+
+const TableRow = ({ name, stage, date }) => {
+  const stageColors = {
+    Interviewed: 'bg-yellow-100 text-yellow-800',
+    Shortlisted: 'bg-indigo-100 text-indigo-800',
+    Hired: 'bg-green-100 text-green-800',
+    Declined: 'bg-red-100 text-red-800',
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row justify-between py-4 border-b last:border-b-0">
+      <div className="md:w-1/4 font-medium mt-2">{name}</div>
+      <div className={`md:w-1/4 mt-2 md:mt-0 ${stageColors[stage]} rounded-full p-2 text-xs font-semibold text-center w-max`}>
+        {stage}
+      </div>
+      <div className="md:w-1/4 mt-2 md:mt-2 text-gray-600">{date}</div>
+      <div className="md:w-1/4 mt-2 md:mt-0">
+        <Button className="bg-blue-50 text-blue-600 hover:bg-blue-100">See Resume</Button>
+      </div>
+    </div>
+  );
+};
+
+const ProfessorInfoItem = ({ label, value }) => (
+  <div className="mb-6">
+    <div className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">{label}</div>
+    <div className="text-gray-900">{value}</div>
+  </div>
+);
 
 const ProfessorProfile = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const applicants = [
+    { name: 'Gojo Satoru', stage: 'Interviewed', date: '13/05/2023' },
+    { name: 'Yuji Itadori', stage: 'Shortlisted', date: '14/05/2023' },
+    { name: 'Megumi Fushiguro', stage: 'Hired', date: '15/05/2023' },
+    { name: 'Nobara Kugisaki', stage: 'Declined', date: '16/05/2023' },
+    { name: 'Maki Zenin', stage: 'Interviewed', date: '17/05/2023' },
+  ];
+
   return (
-    <div style={{background:"#E8FCFE", height:"100vh", width:"100%"}}>
-<NavBar />
-        <div className='total-applicants'>Total Applicants: 19</div>
-        <div className='search-professor-rectangle'>
-        <img src={searchicon} className='search-icon-professor'></img>
-        <input placeholder='Search' className='input-search-professor'></input>
-        </div>
-        <button className='post-button-professor'>
-            Post an Internship
-          </button>
-          <div className='table'>
-            <ul>
-                <li className='full-name'>Full name</li>
-                <li className='hiring-stage'>Hiring Stage</li>
-                <li className='applied-date'>Applied Date</li>
-                <li className='action'>Action</li>
-            </ul>
-            <div className='line-1-table'></div>
-            <ul className='row'>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-            </ul>
-            <ul className='row'style={{background: '#F6F6F6'}}>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid  #6255A5',color:' #6255A5'}}>Shortlisted</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-                
-            </ul>
-            <ul className='row'>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid #00BF44',color:'#00BF44'}}>Hired</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-            </ul>
-            <ul className='row'style={{background: '#F6F6F6'}}>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid  #C31616',color:' #C31616'}}>Declined</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-            </ul>
-            <ul className='row'>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-            </ul>
-            <ul className='row'style={{background: '#F6F6F6'}}>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-            </ul>
-            <ul className='row'>
-                <li className='student-name'>gojo</li>
-                <li className='stage' style={{border:'1px solid #EBC351',color:'#EBC351'}}>Interviewed</li>
-                <li className='student-applied-date'>13/05/2023</li>
-                <li className='see-resume'>See Resume</li>
-            </ul>
-           
+    <div className="bg-gray-100 min-h-screen">
+      <NavBar />
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row">
+
+          {/* Left column (65%) */}
+          <div className="w-full lg:w-[65%] lg:pr-8 mb-8 lg:mb-0">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
+              <div className="flex items-center space-x-16">
+                <div className="text-2xl font-bold text-gray-800">Total Applicants: {applicants.length}</div>
+                <div className="w-64">
+                  <SearchInput />
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <TableHeader />
+              {applicants.map((applicant, index) => (
+                <TableRow key={index} {...applicant} />
+              ))}
+            </div>
           </div>
 
-          <div className='professor-info'>
-          <img src={gojo} className="professor-profile-pic" alt="gojo"></img>
-          <div className='professor-name'>gojo</div>
-          <div className="basic-info-professor">Basic Information</div>
-          <div className='professor-age'>AGE</div>
-          <div className='professor-age-data'>25</div>
-          <div className='professor-qualification'>QUALIFICATION</div>
-          <div className='professor-qualification-data'>P.H.D</div>
-          <div className='professor-position'>POSITION</div>
-          <div className='professor-position-data'>PROFESSOR</div>
-          <div className='professor-biodata'>BIODATA</div>
-          <div className='professor-biodata-data'>Lorem ipsum loreum ipsum Lorem ipsum loreum ipsum</div>
-          <div className="add-notes-professor">Add Notes</div>
-            <Textarea placeholder="Add notes for future reference" style={{marginLeft:'0rem', marginTop:'0.5rem', width:'28.5rem',height:'4.27rem'}} />
-            <button className='search-button-notes-professor'>
-            Add Notes
-          </button>
+          {/* Right column (35%) */}
+          <div className="w-full lg:w-[35%]">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="relative h-48 bg-gradient-to-r from-blue-500 to-indigo-600">
+                <img src={gojo} className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-32 h-32 rounded-full border-4 border-white object-cover" alt="Gojo Satoru" />
+              </div>
+              <div className="pt-20 px-6 pb-6">
+                <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">Gojo Satoru</h2>
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-700 border-b pb-2">Basic Information</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <ProfessorInfoItem label="AGE" value="28" />
+                    <ProfessorInfoItem label="POSITION" value="Special Grade Sorcerer" />
+                    <ProfessorInfoItem label="QUALIFICATION" value="P.H.D in Jujutsu Tech" />
+                    <ProfessorInfoItem label="EXPERIENCE" value="10+ years" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-gray-700">Biodata</h3>
+                  <p className="text-gray-600 mb-6">The strongest jujutsu sorcerer in the world, known for his mastery of the Six Eyes and Limitless Curse Technique.</p>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+
     </div>
   )
 }

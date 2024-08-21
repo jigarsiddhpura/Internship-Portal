@@ -89,7 +89,7 @@ const ApplyInternship = () => {
           selectedTags.some((tag) => internship.skills.split(",").includes(tag)) // filtering skills
         ) ||
         (
-          selectedTags.includes(internship.internship_Type) // filtering internship type
+          selectedTags.includes(internship.jobType) // filtering internship type
         ) ||
         (
           selectedTags.some((tag) => isNumberInStipendRange(tag, internship.stipend)) // filtering stipend
@@ -103,10 +103,8 @@ const ApplyInternship = () => {
     return (
       <ThemeProvider theme={theme}>
         <Grid md={12}>
-          {filteredInternships.map((internship, index) => {
+          {filteredInternships && filteredInternships.map((internship, index) => {
             var skills = internship.skills ? internship.skills.split(",") : "";
-            // skills = skills.filter((element) => element !== "");
-            // var skills = null;
             if (items.includes(internship.id)) {
               return (
                 <Grid
@@ -186,7 +184,7 @@ const ApplyInternship = () => {
                         <span
                           style={{ color: "black", marginBottom: "0.3rem" }}
                         >
-                          {internship.duration}
+                          {internship.startDate} - {internship.endDate}
                         </span>
                       </Stack>
                       <Stack direction="row" spacing={2}>
@@ -202,7 +200,7 @@ const ApplyInternship = () => {
                         <span
                           style={{ color: "black", marginBottom: "0.3rem" }}
                         >
-                          {internship.stipend.substring(2)}
+                          {internship.stipend}
                         </span>
                       </Stack>
                     </Stack>

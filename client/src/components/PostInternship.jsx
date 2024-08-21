@@ -28,7 +28,7 @@ const validationSchema = yup.object({
     .date()
     .min(new Date(), "Selected date must be in future")
     .required("End date is required"),
-  stipend: yup.string("1000").required("Stipend is required"),
+  stipend: yup.number(1000).required("Stipend is required"),
   eligibility: yup.string("B.Tech").required("Eligibility is required"),
   companyName: yup.string("B.Tech").required("companyName is required"),
   location: yup.string("Mumbai"),
@@ -55,37 +55,36 @@ const PostInternshipForm = () => {
       selectedValues.forEach((item, index) => {
         selectedValues[index] = item.value;
       });
-      var concat_values = selectedValues.join(",");
-      formik.values.skills = concat_values;
+      var skillsString = selectedValues.join(",");
 
-      const duration = calculateMonthDuration(values.startDate, values.endDate);
-      formik.values.duration = duration;
+      const formattedValues = {
+        ...values,
+        skills: skillsString,
+        startDate: new Date(values.startDate).toISOString().split('T')[0],
+        endDate: new Date(values.endDate).toISOString().split('T')[0]
+      };
 
-      formik.values.stipend = `₹ ${formik.values.stipend} /month`
-
-      const {startDate, endDate, eligibility, positionsOpen, ...filteredValues } = values;
-
-      // alert(JSON.stringify(filteredValues, null, 2));
-      sendData(filteredValues);
+      alert(JSON.stringify(formattedValues, null, 2));
+      sendData(formattedValues);
     },
   });
 
-  const calculateMonthDuration = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+  // const calculateMonthDuration = (startDate, endDate) => {
+  //   const start = new Date(startDate);
+  //   const end = new Date(endDate);
 
-    let months = (end.getFullYear() - start.getFullYear()) * 12;
-    months -= start.getMonth();
-    months += end.getMonth();
+  //   let months = (end.getFullYear() - start.getFullYear()) * 12;
+  //   months -= start.getMonth();
+  //   months += end.getMonth();
 
-    // Adjust for same month but different day
-    if (end.getDate() < start.getDate()) {
-      months--;
-    }
-    console.log(months);
+  //   // Adjust for same month but different day
+  //   if (end.getDate() < start.getDate()) {
+  //     months--;
+  //   }
+  //   console.log(months);
 
-    return months <= 0 ? "0" : months+" MONTHS";
-  }
+  //   return months <= 0 ? "0" : months+" MONTHS";
+  // }
 
   const sendData = (internshipData) => {
     try {
@@ -112,7 +111,7 @@ const PostInternshipForm = () => {
         requestOptions
       )
         .then((response) => response.text())
-        .then((result) => toast.success("Internship created "))
+        .then((result) => console.log(result))
         .catch((error) =>
           console.log("Error while posting internship : ", error)
         );
@@ -352,9 +351,9 @@ const PostInternshipForm = () => {
       <>
         <TextField
           id="stipend"
-          type="text"
+          type="number"
           label="Stipend"
-          placeholder="Stipend"
+          placeholder="Stipend per month"
           name="stipend"
           value={formik.values.stipend}
           onBlur={formik.handleBlur}

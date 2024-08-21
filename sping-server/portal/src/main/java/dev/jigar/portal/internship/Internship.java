@@ -1,5 +1,8 @@
 package dev.jigar.portal.internship;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -14,10 +17,13 @@ public record Internship(
     String jobTitle,
     String companyName,
     String location,
-    String stipend,
-    String duration,
+    Integer stipend,
     String jobType,
     String skills,
+    String eligibility,
+    Integer positionsOpen,
+    LocalDate startDate,
+    LocalDate endDate,
     @URL
     String applyLink,
     @URL
