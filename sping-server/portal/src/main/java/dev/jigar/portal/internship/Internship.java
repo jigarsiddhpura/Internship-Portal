@@ -17,6 +17,7 @@ public record Internship(
     String stipend,
     String duration,
     String jobType,
+    String skills,
     @URL
     String applyLink,
     @URL

@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS internships (
     job_type VARCHAR(50),
     stipend VARCHAR(100) NOT NULL,
     duration VARCHAR(50) NOT NULL,
+    skills VARCHAR(255),
     apply_link VARCHAR(255),
     internship_logo_url VARCHAR(255)
 );

@@ -28,5 +28,9 @@ public class InternshipService {
         return internshipRepository.findByJobType(jobType);
     }
 
+    public void saveInternship(Internship internship) {
+        internshipRepository.save(internship);
+    }
+
 
 }

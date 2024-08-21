@@ -58,10 +58,11 @@ public class InternshipScraperService {
                 String duration = internshipElement.select("div.row-1-item i.ic-16-calendar + span").text();
                 String applyLink = "https://internshala.com/" + internshipElement.attr("data-href");
                 String internshipLogoUrl = internshipElement.select("div.internship_logo img").attr("src");
+                String skills = "";
 
                 // id = null tells spring Data that its a new field and has no id yet
                 // id is generated automatically by DB
-                Internship internship = new Internship(null, jobTitle, companyName, location, stipend, duration, jobType, applyLink, internshipLogoUrl);
+                Internship internship = new Internship(null, jobTitle, companyName, location, stipend, duration, jobType, skills, applyLink, internshipLogoUrl);
                 internships.add(internship);
             }
         } catch (IOException e) {
