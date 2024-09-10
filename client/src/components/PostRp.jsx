@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -10,62 +9,65 @@ import * as yup from "yup";
 import humanAI from "../images/humanAI.png";
 import "../css/InternshipForm.css";
 import makeAnimated from "react-select/animated";
-import { type } from "@testing-library/user-event/dist/type";
 import { skillsOptions } from "../docs/research_skills.ts";
 import Select from "react-select";
+import { toast } from 'react-hot-toast';
+
 
 const validationSchema = yup.object({
   topic: yup.string("ML Engineer").required("topic is required"),
   eligibility: yup.string("B.Tech").required("Eligibility is required"),
-  skillsRequired: yup.array().required("Required Field"),
+  skills: yup.array().required("Required Field"),
 });
 
 const PostRpForm = () => {
   const formik = useFormik({
     initialValues: {
       topic: "",
-      skillsRequired: [],
       eligibility: "",
+      skills: [],
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       selectedValues.forEach((item, index) => {
         selectedValues[index] = item.value;
       });
-      var concat_values = selectedValues.join(",");
-      formik.values.skillsRequired = concat_values;
-      alert(JSON.stringify(values, null, 2));
-      sendData(values);
+      var skillsString = selectedValues.join(",");
+
+      const formattedValues = {
+        ...values,  
+        skills: skillsString,
+        applyLink: null
+      }
+
+      alert(JSON.stringify(formattedValues, null, 2));
+      toast.success("Research Internship created");
+      sendData(formattedValues);
     },
   });
 
-  const sendData = (values) => {
+  const sendData = (rpData) => {
     try {
       var myHeaders = new Headers();
 
-      myHeaders.append(
-        "Authorization",
-        "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
-      );
+      // myHeaders.append(
+      //   "Authorization",
+      //   "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
+      // );
 
       // myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
 
-      console.log(myHeaders);
-
-      var formdata = new FormData();
-      formdata.append("skills", values.skillsRequired);
-      formdata.append("topic", values.topic);
-      formdata.append("eligibility", values.eligibility);
+      myHeaders.append("Content-Type", "application/json");
 
       var requestOptions = {
         method: "POST",
         headers: myHeaders,
-        body: formdata,
+        body: JSON.stringify(rpData), // backend expects json not formdata
         redirect: "follow",
       };
 
       fetch(
-        "https://ipbackend.pythonanywhere.com/users/Research_ProjectLC/",
+        "http://localhost:8080/api/research",
         requestOptions
       )
         .then((response) => response.text())
@@ -181,7 +183,7 @@ const PostRpForm = () => {
       <>
         <Select
           required
-          className="skillsRequired"
+          className="skills"
           closeMenuOnSelect={false}
           components={animatedComponents}
           // defaultValue={[skillsOptions[4], skillsOptions[5]]}

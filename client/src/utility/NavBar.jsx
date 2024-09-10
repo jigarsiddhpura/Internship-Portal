@@ -28,43 +28,34 @@ const NavBar = () => {
   return (
     <>
       <nav className="internship-portal-parent" navbar>
-        <div className="internship-portal3">Internship Portal</div>
-        <div className="group-parent">
-          <button className="vector-wrapper" onClick={openToggle}>
+
+        <Link to='/' style={{ textDecoration: 'none', color: '#212121' }}>
+          <div className="internship-portal3">Internship Portal</div>
+        </Link>
+        <div className="group-parent" >
+          <button className="vector-wrapper" onClick={openToggle} >
             <img className="vector-icon" alt="" src="/vector.svg" />
           </button>
           <section className="home-parent">
 
             <div className="home3">
-              <Link to="/" style={{ color: '#212121' }}>
-                Home
+              <Link to="/applyinternship" style={{ textDecoration: 'none', color: '#212121' }}>
+                Internship
               </Link>
             </div>
-            {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
-              <div className="home3">
-                <Link to="/Courses" style={{ textDecoration: 'none', color: '#212121' }}>
-                  Courses
-                </Link>
-              </div>
+            {/* <div className="home3">
+              <Link to="/Courses" style={{ textDecoration: 'none', color: '#212121' }}>
+                Courses
+              </Link>
+            </div> */}
 
-            ) : (
-              <div className="home3">
-                <Link to="/PostInternship" style={{ textDecoration: 'none', color: '#212121' }}>
-                  Post Internship/Research Paper
-                </Link>
-              </div>
-            )}
+            <div className="home3">
+              <Link to="/applyresearch" style={{ textDecoration: 'none', color: '#212121' }}>
+                Research
+              </Link>
+            </div>
 
-            {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
-              <div className="home3">
-                <Link to="/applyresearch" style={{ textDecoration: 'none', color: '#212121' }}>
-                  Research
-                </Link>
-              </div>
 
-            ) : (
-              null
-            )}
           </section>
 
           <section className="icon-chevron-down-parent">

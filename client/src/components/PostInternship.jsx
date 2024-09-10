@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -10,7 +9,6 @@ import * as yup from "yup";
 import humanAI from "../images/humanAI.png";
 import "../css/InternshipForm.css";
 import makeAnimated from "react-select/animated";
-import { type } from "@testing-library/user-event/dist/type";
 import { skillsOptions } from "../docs/internship_skills.ts";
 import Select from "react-select";
 import { toast } from 'react-hot-toast';
@@ -64,7 +62,8 @@ const PostInternshipForm = () => {
         endDate: new Date(values.endDate).toISOString().split('T')[0]
       };
 
-      alert(JSON.stringify(formattedValues, null, 2));
+      // alert(JSON.stringify(formattedValues, null, 2));
+      toast.success("Internship created");
       sendData(formattedValues);
     },
   });
