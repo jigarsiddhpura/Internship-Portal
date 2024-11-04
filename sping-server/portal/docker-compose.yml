@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:alpine
+    container_name: local_postgresd
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Jigar@2003
+      - POSTGRES_DB=portal
