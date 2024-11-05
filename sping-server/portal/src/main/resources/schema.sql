@@ -21,3 +21,15 @@ CREATE TABLE IF NOT EXISTS research (
     skills VARCHAR(255),
     apply_link VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    sap_id VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    contact VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    is_new BOOLEAN,
+    PRIMARY KEY (sap_id)
+);

@@ -21,6 +21,7 @@ import "../css/Login.css";
 import undrawImg from "../images/undraw_Welcome_.png";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import axios from "axios";
 
 import { useAuth } from "../contexts/authContext";
 import { doSignIn, doSignInWithGoogle } from "../firebase/auth";
@@ -51,8 +52,24 @@ const Login = () => {
     onSubmit: async (values) => {
       // alert(JSON.stringify(values, null, 2));
       try {
-        doSignIn(values.email, values.password);
+
+        // FIREBASE CODE
+        // doSignIn(values.email, values.password);
+
+        axios.post('http://localhost:8080/auth/api/signin', {
+          email: values.email,
+          password: values.password
+        })
+        .then(response => {
+          console.log('User signed in:', response.data);
+        })
+        .catch(error => {
+          console.error('There was an error signing in!', error);
+        });
+        
+
         navigate('/');
+
       } catch (error) {
         alert("Issue sign in with email and password");
       }

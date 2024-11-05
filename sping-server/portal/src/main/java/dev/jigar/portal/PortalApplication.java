@@ -27,5 +27,6 @@ public class PortalApplication {
 		SpringApplication.run(PortalApplication.class, args);
 		log.info("Application started successfully");
 	}
+	
 
 }

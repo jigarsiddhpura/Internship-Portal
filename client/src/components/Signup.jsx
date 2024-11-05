@@ -22,6 +22,7 @@ import React from "react";
 import "../css/Login.css";
 import undrawImg from "../images/undraw_Welcome_.png";
 import { useFormik } from "formik";
+import axios from "axios";
 
 import { useAuth } from "../contexts/authContext";
 import { doCreateUser } from "../firebase/auth";
@@ -101,11 +102,34 @@ const Signup = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 2));
-      console.log(values.email, values.password);
-      doCreateUser(values.email, values.password).catch(() => {
-        alert("Issue sign in with email and password");
+      // console.log(values.email, values.password);
+
+      // FIREBASE CODE
+      // doCreateUser(values.email, values.password).catch(() => {
+      //   alert("Issue sign in with email and password");
+      // });
+
+      // var myHeaders = new Headers();
+      // myHeaders.append("Content-Type", "application/json");
+
+      axios.post('http://localhost:8080/auth/api/signin', {
+        sapId: values.sapid,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        contact: values.contact,
+        password: values.password,
+        role: "STUDENT" // Or 'PROFESSOR', 'ADMIN'
+      })
+      .then(response => {
+        console.log('User signed up:', response.data);
+        navigate('/login');
+      })
+      .catch(error => {
+        // console.error('There was an error signing up!', error);
+        alert('There was an error signing up!', error)
       });
-      navigate('/login');
+      
     },
   });
 
