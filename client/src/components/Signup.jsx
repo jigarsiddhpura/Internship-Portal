@@ -112,7 +112,7 @@ const Signup = () => {
       // var myHeaders = new Headers();
       // myHeaders.append("Content-Type", "application/json");
 
-      axios.post('http://localhost:8080/auth/api/signin', {
+      axios.post('http://localhost:8080/api/auth/signin', {
         sapId: values.sapid,
         firstName: values.firstName,
         lastName: values.lastName,

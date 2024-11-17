@@ -24,7 +24,6 @@ import * as yup from "yup";
 import axios from "axios";
 
 import { useAuth } from "../contexts/authContext";
-import { doSignIn, doSignInWithGoogle } from "../firebase/auth";
 
 const validationSchema = yup.object({
   email: yup
@@ -39,7 +38,7 @@ const validationSchema = yup.object({
 
 const Login = () => {
 
-  const {userLoggedIn} = useAuth();
+  const {userLoggedIn, initializeUser} = useAuth();
   const navigate = useNavigate();
   // formik
 
@@ -53,35 +52,22 @@ const Login = () => {
       // alert(JSON.stringify(values, null, 2));
       try {
 
-        // FIREBASE CODE
-        // doSignIn(values.email, values.password);
-
-        axios.post('http://localhost:8080/auth/api/signin', {
-          email: values.email,
-          password: values.password
-        })
-        .then(response => {
+        axios.post('http://localhost:8080/api/auth/signin', 
+          {email: values.email, password: values.password},
+          {withCredentials: true}
+        ).then(response => {
           console.log('User signed in:', response.data);
+          initializeUser();
+        }).catch(error => {
+          console.error('Error signing in:', error);
         })
-        .catch(error => {
-          console.error('There was an error signing in!', error);
-        });
-        
 
-        navigate('/');
 
       } catch (error) {
         alert("Issue sign in with email and password");
       }
     },
   });
-
-  const onGoogleSignIn = (e) => {
-    e.preventDefault();
-    doSignInWithGoogle().catch(err => {
-      alert("Issue sign in with google");
-    })
-  }
 
   // adding event listener for responsiveness
   const [width, setWindowWidth] = useState(0);

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ContextProviders } from './contexts/ContextProviders';
+// import { ContextProviders } from './contexts/ContextProviders';
 import { AuthProvider } from './contexts/authContext';
 import { AppProvider } from './contexts/AppContext';
 import { Toaster } from "react-hot-toast";
@@ -12,14 +12,12 @@ import { Toaster } from "react-hot-toast";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <ContextProviders> */}
     <AppProvider>
       <AuthProvider>
         <App />
         <Toaster/>
       </AuthProvider>
     </AppProvider>
-    {/* </ContextProviders> */}
   </React.StrictMode>
 );
 

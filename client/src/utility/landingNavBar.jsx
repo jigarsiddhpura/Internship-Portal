@@ -1,14 +1,17 @@
 import React from 'react'
 import "../css/LandingNavBar.css"
-// import { Button } from "@nextui-org/react";
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../contexts/authContext";
-import { doSignOut } from "../firebase/auth";
 
 const LandingNavBar = () => {
 
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn, signOut } = useAuth();
   const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut();
+    navigate("/Login");
+  }
 
   return (
     <div className='navbar'>
@@ -22,7 +25,7 @@ const LandingNavBar = () => {
           {
             userLoggedIn ?
               <>
-                <button className="rectangle-group" onClick={() => { doSignOut().then(() => { navigate('/login') }) }}>
+                <button className="rectangle-group" onClick={handleSignOut}>
                   <div className="group-item" />
                   <div className="registration">Sign-out</div>
                 </button>

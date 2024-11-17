@@ -7,6 +7,7 @@ export const useAuthenticatedNavigation = () => {
 
     const navigateIfAuthenticated = (destination) => {
         if (userLoggedIn){
+            console.log("Navigating to " + destination);
             navigate(destination);
         } else {
             navigate("/Login");
