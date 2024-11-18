@@ -92,7 +92,18 @@ const NavBar = () => {
             </div>
           </section>
 
-          <div className="icon-chevron-down-parent relative">
+          
+          {!currentUser ? (
+            <Link
+              to="/login"
+              className="text-lg py-2 px-6 font-normal bg-green-500 text-white rounded-md hover:bg-green-600 hover:text-white"
+              style={{ textDecoration: 'none' }}
+            >
+              Login
+            </Link>
+          ) : (
+            <>
+            <div className="icon-chevron-down-parent relative">
             <button
               ref={avatarRef}
               className="flex items-center space-x-2 cursor-pointer"
@@ -118,6 +129,7 @@ const NavBar = () => {
                   <Link
                     to={currentUser?.role === 'STUDENT' ? '/UserProfile' : '/Professorprofile'}
                     className="block px-4 py-2 hover:bg-gray-100 rounded-t-md no-underline"
+                    style={{ textDecoration: 'none'}}
                   >
                     Profile
                   </Link>
@@ -131,13 +143,7 @@ const NavBar = () => {
                 document.body
               )}
           </div>
-          {!currentUser && (
-            <Link
-              to="/login"
-              className="block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-            >
-              Login
-            </Link>
+            </>
           )}
         </div>
       </nav>
