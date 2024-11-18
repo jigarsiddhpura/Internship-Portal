@@ -9,7 +9,7 @@ import { doSignOut } from "../firebase/auth";
 
 const NavBar = () => {
 
-  const { userLoggedIn } = useAuth();
+  const { currentUser, userLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -61,10 +61,10 @@ const NavBar = () => {
           <section className="icon-chevron-down-parent">
 
             {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
-              <div className="home3"><Link to='/UserProfile' style={{ textDecoration: 'none', color: '#212121' }}>gojo</Link></div>
+              <div className="home3"><Link to='/UserProfile' style={{ textDecoration: 'none', color: '#212121' }}>{currentUser?.firstName}</Link></div>
 
             ) : (
-              <div className="home3"><Link to='/ProfessorProfile' style={{ textDecoration: 'none', color: '#212121' }}>gojo</Link></div>
+              <div className="home3"><Link to='/ProfessorProfile' style={{ textDecoration: 'none', color: '#212121' }}>{currentUser?.firstName}</Link></div>
             )}
             {currentPage === '/Courses' || currentPage === '/applyresearch' || currentPage === '/UserProfile' ? (
               <Link to='/UserProfile'> <img className="pp" alt="pp" src={gojo} /></Link>

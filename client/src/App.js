@@ -57,7 +57,7 @@ function App() {
           </Route>
           <Route path="/nav" element={<NavBar />}>
           </Route>
-          <Route path="/UserProfile" element={<UserProfile />}>
+          <Route path="/UserProfile" element={<> <NavBar /> <UserProfile /> </>}>
           </Route>
 
           <Route path="/ProfessorProfile" element={<ProfessorProfile />}>
