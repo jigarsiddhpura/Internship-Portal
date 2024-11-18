@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-import Toggle from "../components/Toggle";
-import PortalDrawer from "../components/PortalDrawer";
+import Toggle from "../pages/Toggle";
+import PortalDrawer from "../pages/PortalDrawer";
 import "../css/NavBar.css";
 import gojo from "../images/gojo.png"
 import { Link, useLocation, useNavigate } from 'react-router-dom'

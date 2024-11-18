@@ -1,4 +1,5 @@
 import React from "react";
+import {ReactDOM }from "react-dom";
 import { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -9,71 +10,103 @@ import * as yup from "yup";
 import humanAI from "../images/humanAI.png";
 import "../css/InternshipForm.css";
 import makeAnimated from "react-select/animated";
-import { skillsOptions } from "../docs/research_skills.ts";
+import { type } from "@testing-library/user-event/dist/type";
+import { skillsOptions } from "../docs/research_skills";
 import Select from "react-select";
-import { toast } from 'react-hot-toast';
-
+import { useLocation } from "react-router-dom";
 
 const validationSchema = yup.object({
   topic: yup.string("ML Engineer").required("topic is required"),
   eligibility: yup.string("B.Tech").required("Eligibility is required"),
-  skills: yup.array().required("Required Field"),
+  skillsRequired: yup.array().required("Required Field"),
 });
 
-const PostRpForm = () => {
+const UpdateResearchForm = ({id}) => {
+
+    const [researchp, setresearchp] = useState([]);
+
+    const getresearchpDetail = () => {
+      try {
+        var myHeaders = new Headers();
+        myHeaders.append(
+          "Authorization",
+          "Token f028d8d9a1884a335734170938fb9f794d2cf4e5"
+        //   prof ka token
+        );
+        myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
+  
+        var requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow",
+        };
+  
+        fetch(
+          `https://ipbackend.pythonanywhere.com/users/Research_ProjectRUD/${id}/`,
+          requestOptions
+        )
+          .then((response) => response.text())
+          .then((result) => setresearchp(JSON.parse(result)))
+          .catch((error) => console.log("error", error));
+      } catch (err) {
+        console.log(`Error while fetching the researchp for update : ${err}`);
+      }
+    };
+  
+    useEffect(() => {
+      getresearchpDetail();
+    },[]);
+
   const formik = useFormik({
     initialValues: {
       topic: "",
+      skillsRequired: [],
       eligibility: "",
-      skills: [],
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       selectedValues.forEach((item, index) => {
         selectedValues[index] = item.value;
       });
-      var skillsString = selectedValues.join(",");
-
-      const formattedValues = {
-        ...values,  
-        skills: skillsString,
-        applyLink: null
-      }
-
-      alert(JSON.stringify(formattedValues, null, 2));
-      toast.success("Research Internship created");
-      sendData(formattedValues);
+      var concat_values = selectedValues.join(",");
+      formik.values.skillsRequired = concat_values;
+      alert(JSON.stringify(values, null, 2));
+      updateRp(values);
     },
   });
 
-  const sendData = (rpData) => {
+  const updateRp = (values) => {
     try {
       var myHeaders = new Headers();
 
-      // myHeaders.append(
-      //   "Authorization",
-      //   "Token 19942b7733d256acebbfacfb6eeb7e5f55d58ecd"
-      // );
+      myHeaders.append(
+        "Authorization",
+        "Token f028d8d9a1884a335734170938fb9f794d2cf4e5"
+        // prof ka token
+      );
 
-      // myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
+      myHeaders.append("Cookie", "csrftoken=o9U6wKWbEVIt5Ha31j7UIfXxtowMJPR6");
 
-      myHeaders.append("Content-Type", "application/json");
+      var formdata = new FormData();
+      formdata.append("skills", values.skillsRequired);
+      formdata.append("topic", values.topic);
+      formdata.append("eligibility", values.eligibility);
 
       var requestOptions = {
-        method: "POST",
+        method: "PATCH",
         headers: myHeaders,
-        body: JSON.stringify(rpData), // backend expects json not formdata
+        body: formdata,
         redirect: "follow",
       };
 
       fetch(
-        "http://localhost:8080/api/research",
+        `https://ipbackend.pythonanywhere.com/users/Research_ProjectRUD/${id}/`,
         requestOptions
       )
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) =>
-          console.log("Error while posting research internship : ", error)
+          console.log("Error while updating research paper : ", error)
         );
     } catch (err) {
       throw new Error("Invalid data");
@@ -140,7 +173,7 @@ const PostRpForm = () => {
         <TextField
           id="topic"
           type="text"
-          label="Topic"
+          label={researchp.topic}
           placeholder="Topic"
           name="topic"
           value={formik.values.topic}
@@ -161,7 +194,7 @@ const PostRpForm = () => {
         <TextField
           id="eligibility"
           type="text"
-          label="Eligibility"
+          label={researchp.eligibility}
           placeholder="Eligibility"
           name="eligibility"
           value={formik.values.eligibility}
@@ -183,7 +216,7 @@ const PostRpForm = () => {
       <>
         <Select
           required
-          className="skills"
+          className="skillsRequired"
           closeMenuOnSelect={false}
           components={animatedComponents}
           // defaultValue={[skillsOptions[4], skillsOptions[5]]}
@@ -202,6 +235,7 @@ const PostRpForm = () => {
           styles={selectStyles}
           onChange={handleSelectChange}
           placeholder="Required skills"
+          label={researchp.skills}
         />
       </>
     );
@@ -211,7 +245,7 @@ const PostRpForm = () => {
     <Grid
       container
       spacing={2}
-      className="PostRp_main_container"
+      className="UpdateResearch_main_container"
       style={{
         justifyContent: "center",
         alignItems: "center",
@@ -239,7 +273,7 @@ const PostRpForm = () => {
               topic: "relative",
             }}
           >
-            <h1 className="formHeader">Post Research Internship</h1>
+            <h1 className="formHeader">Post Research researchp</h1>
 
             {TopicField()}
 
@@ -248,7 +282,7 @@ const PostRpForm = () => {
             {SkillsField()}
 
             <div>
-              <PostBtn type="submit">Post Research Internship</PostBtn>
+              <PostBtn type="submit">Post Research researchp</PostBtn>
             </div>
           </Box>
         </form>
@@ -267,12 +301,16 @@ const PostRpForm = () => {
   );
 };
 
-const PostRp = () => {
+const UpdateResearch = () => {
+    const location = useLocation();
+    const pathname = location.pathname;
+    const id = pathname.match(/\d+$/)?.[0];
+    
   return (
     <React.Fragment>
-      <PostRpForm />
+      <UpdateResearchForm id={id}/>
     </React.Fragment>
   );
 };
 
-export default PostRp;
+export default UpdateResearch;

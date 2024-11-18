@@ -2,25 +2,25 @@
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Login from './components/Login';
+import Login from './pages/Login';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from './components/Signup';
-import Courses from './components/Courses';
-import LandingPage from './components/LandingPage';
-import PostInternship from './components/PostInternship';
+import Signup from './pages/Signup';
+import Courses from './pages/Courses';
+import LandingPage from './pages/LandingPage';
+import PostInternship from './pages/PostInternship';
 import NavBar from './utility/NavBar';
-import UserProfile from './components/UserProfile';
+import UserProfile from './pages/UserProfile';
 
-import ProfessorProfile from './components/ProfessorProfile';
+import ProfessorProfile from './pages/ProfessorProfile';
 import Footer from './utility/Footer';
-import EditResearch from './components/EditResearch';
+import EditResearch from './pages/EditResearch';
 import Header from './utility/Header';
-import ApplyResearch from './components/ApplyResearch';
-import ApplyInternship from './components/ApplyInternship';
-import PostRp from './components/PostRp'
-import EditInternship from './components/EditInternship';
-import UpdateInternship from './components/UpdateInternship';
-import UpdateResearch from './components/UpdateResearch';
+import ApplyResearch from './pages/ApplyResearch';
+import ApplyInternship from './pages/ApplyInternship';
+import PostRp from './pages/PostRp'
+import EditInternship from './pages/EditInternship';
+import UpdateInternship from './pages/UpdateInternship';
+import UpdateResearch from './pages/UpdateResearch';
 
 
 function App() {

@@ -9,7 +9,7 @@ import * as yup from "yup";
 import humanAI from "../images/humanAI.png";
 import "../css/InternshipForm.css";
 import makeAnimated from "react-select/animated";
-import { skillsOptions } from "../docs/internship_skills.ts";
+import { skillsOptions } from "../docs/internship_skills";
 import Select from "react-select";
 import { toast } from 'react-hot-toast';
 

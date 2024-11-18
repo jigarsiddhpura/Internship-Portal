@@ -11,7 +11,7 @@ import humanAI from "../images/humanAI.png";
 import "../css/InternshipForm.css";
 import makeAnimated from "react-select/animated";
 import { type } from "@testing-library/user-event/dist/type";
-import { skillsOptions } from "../docs/internship_skills.ts";
+import { skillsOptions } from "../docs/internship_skills";
 import Select from "react-select";
 import { useAsyncError, useParams , useLocation} from "react-router-dom";
 
