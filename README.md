@@ -16,7 +16,7 @@ Developed an Internship Portal for the college professors to hire students for i
     <td align="center" style="padding: 10px;">
       <h3>Backend 🌐</h3>
       <a href="https://skillicons.dev">
-        <img src="https://skillicons.dev/icons?i=spring,postgres&theme=light" alt="Backend Skills">
+        <img src="https://skillicons.dev/icons?i=spring,postgres,docker&theme=light" alt="Backend Skills">
       </a>
     </td>
     <td align="center" style="padding: 10px;">
