@@ -32,7 +32,7 @@ import ellipse23 from "../images/ellipse-23@2x.png"
 import ellipse11 from "../images/ellipse-11.svg"
 import ellipse12 from "../images/ellipse-12.svg"
 import ellipse14 from "../images/ellipse-14.svg"
-import NavBar from "../utility/LandingNavBar";
+import NavBar from "../utility/NavBar";
 import { Link } from "react-router-dom";
 import { useAuthenticatedNavigation } from "../hooks/useAuthenticatedNavigation";
 

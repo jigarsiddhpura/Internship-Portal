@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />}>
+          <Route path="/" element={<> <LandingPage /> </>}>
           </Route>
           <Route path="/Signup" element={<Signup />}>
           </Route>
@@ -54,8 +54,6 @@ function App() {
           <Route path="/updateinternship/:id" element={<><NavBar />  <UpdateInternship />  </>}>
           </Route>
           <Route path="/header" element={<Header />}>
-          </Route>
-          <Route path="/nav" element={<NavBar />}>
           </Route>
           <Route path="/UserProfile" element={<> <NavBar /> <UserProfile /> </>}>
           </Route>
