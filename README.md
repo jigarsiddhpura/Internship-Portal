@@ -43,8 +43,12 @@ Developed an Internship Portal for the college professors to hire students for i
 </div>
 
 ### User Profile
-![User Profile](https://github.com/jigarsiddhpura/Internship-Portal/assets/95428432/8de8b470-875e-44f8-a2e0-1da0d20f9176)
+![User Profile](https://github.com/user-attachments/assets/941a3141-cc20-42f0-a128-cb8d3ac9fba1)
+
 
 ### Professor Profile
-![Professor Profile](https://github.com/jigarsiddhpura/Internship-Portal/assets/95428432/9ff83fed-a883-4e1b-a351-f7168420d186)
+![Professor Profile](https://github.com/user-attachments/assets/abc76b6f-8091-42fb-b906-b5261fc6dd02)
+![Professor Profile](https://github.com/user-attachments/assets/85a6bf3c-84a6-4ff3-9f4f-415fc3a2317d)
+
+
 
